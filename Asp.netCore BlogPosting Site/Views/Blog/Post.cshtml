@@ -1,0 +1,21 @@
+﻿@inject Asp.netCore_BlogPosting_Site.Services.FormatService format
+
+@model IEnumerable<Asp.netCore_BlogPosting_Site.Models.Post>
+@{
+    ViewData["Title"] = "Post";
+}
+
+
+
+
+<article id="mainArticle">
+    @foreach (var post in Model)
+    {
+
+        @section Header{
+            <h1>@post.Title</h1>
+        }
+        @await Html.PartialAsync("_Partial_Blog", Model)
+
+    }
+</article>

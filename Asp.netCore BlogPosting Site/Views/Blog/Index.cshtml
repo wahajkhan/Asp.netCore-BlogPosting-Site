@@ -1,0 +1,34 @@
+﻿@inject Asp.netCore_BlogPosting_Site.Services.FormatService format
+
+@model IEnumerable<Asp.netCore_BlogPosting_Site.Models.Post>
+@{
+    ViewData["Title"] = "Blogs";
+}
+
+@section Header{ 
+
+<h1>Explore the world , With world Explorer writer </h1>
+
+}
+
+
+
+<article id="mainArticle">
+    @await Html.PartialAsync("_Partial_Blog", Model)
+</article>
+
+@section script{ 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<script>
+
+    $(document).on('click', '.next', function () {
+        var url = $(this).attr('data-url');
+        $('#mainArticle').load(url);
+    });
+</script>
+
+
+
+
+}

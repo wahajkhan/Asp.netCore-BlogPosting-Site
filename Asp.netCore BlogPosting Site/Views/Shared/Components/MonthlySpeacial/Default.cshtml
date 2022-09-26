@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Asp.netCore_BlogPosting_Site.Models.MonthlySpeacial>
+    <h1>Monthly Specials</h1>
+
+    @foreach(var item in Model){
+
+<h2><img src="@item.ImgSrc" alt="@item.ImgAlt" width="75" height="75">@item.ImgAlt</h2>
+<p>
+    @item.Name
+    <br>
+    <a href="/tours/tour_detail_taste.htm">$ @item.Price</a>
+</p>
+
+    }

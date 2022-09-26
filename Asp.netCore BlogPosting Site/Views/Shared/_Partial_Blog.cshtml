@@ -1,0 +1,37 @@
+﻿@inject Asp.netCore_BlogPosting_Site.Services.FormatService format
+
+@model IEnumerable<Asp.netCore_BlogPosting_Site.Models.Post>
+
+<p class="pager">
+    @if (ViewBag.HasPreviousPage)
+    {
+        <a class="prev" href="javascript:void(0)" data-url="@Url.Action("Index", "Blog", new { page = ViewBag.PreviousPage})">&lt;&lt; Previous</a>
+        @*@Html.ActionLink("<< Previous", , new { @class = "prev" })*@
+    }
+    @if (ViewBag.HasNextPage)
+    {
+        <a class="next" href="javascript:void(0)" data-url="@Url.Action("Index", "Blog", new { page = ViewBag.NextPage})">Next &gt;&gt;</a>
+
+    }
+
+</p>
+
+
+
+@foreach (var post in Model)
+{
+    <article class="blog-post">
+        <h1>@Html.ActionLink(@post.Title, "Post", new { Id = post.ID })</h1>
+        <div class="details">
+            Posted <span>@format.FormatDateTime(post.Posted)</span> by <span>@post.Author</span>
+        </div>
+        <div class="content">
+            @post.Body
+            @if (Model.Count() > 1)
+            {
+                @Html.ActionLink("Read More", "Post", new { Id = post.ID })
+            }
+        </div>
+    </article>
+    <hr />
+}

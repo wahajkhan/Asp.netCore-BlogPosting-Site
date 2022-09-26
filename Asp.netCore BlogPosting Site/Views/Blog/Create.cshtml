@@ -1,0 +1,40 @@
+﻿@model Asp.netCore_BlogPosting_Site.Models.Post
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Add Blogs";
+}
+
+@if (ViewBag.Status != null)
+{
+    @Html.Raw(ViewBag.Status)
+
+    <p>For post a new article please click here</p>
+    @Html.ActionLink("Post New Blog","Create","Blog",null,new { @class=""})
+}
+else
+{
+    <fieldset>
+        <h2>Create your own Blog.</h2>
+        @using (Html.BeginForm())
+        {
+            <p>
+                @Html.ValidationSummary()
+            </p>
+            <p>
+                @Html.LabelFor(x => x.Title)
+                @Html.EditorFor(x => x.Title)
+                @Html.ValidationMessageFor(x => x.Title)
+            </p>
+
+            <p>
+                @Html.LabelFor(x => x.Body)
+                @Html.EditorFor(x => x.Body)
+                @Html.ValidationMessageFor(x => x.Body)
+            </p>
+            <p>
+                <button type="submit">Create post</button>
+            </p>
+
+        }
+    </fieldset>
+}
